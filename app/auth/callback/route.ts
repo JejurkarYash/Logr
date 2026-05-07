@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
     const { searchParams, origin } = new URL(request.url);
     const code = searchParams.get("code");
+    console.log("code", code)
     const error = searchParams.get("error");
     const error_description = searchParams.get("error_description");
 
@@ -20,6 +21,6 @@ export async function GET(request: Request) {
             return NextResponse.redirect(`${origin}/?error=${exchangeError.message}`);
         }
     }
-
+    console.log("everything works fine");
     return NextResponse.redirect(`${origin}/dashboard`);
 }
