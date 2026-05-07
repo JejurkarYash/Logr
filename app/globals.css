@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ─── Sidebar animations ──────────────────────────────────────────── */
+
+/* Slow breathing ambient orb */
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(1) translate(0, 0);       opacity: 0.5; }
+  40%       { transform: scale(1.2) translate(6px, -10px); opacity: 0.7; }
+  70%       { transform: scale(0.85) translate(-5px, 8px); opacity: 0.3; }
+}
+
+/* Active icon pop — spring feel */
+@keyframes icon-pop {
+  0%   { transform: scale(0.7);  opacity: 0.5; }
+  65%  { transform: scale(1.18); opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* Logo "P." shimmer sweep */
+@keyframes shimmer-x {
+  0%   { background-position: -200% center; }
+  100% { background-position: 300% center; }
+}
+
+/* Nav items stagger slide-in on mount */
+@keyframes nav-slide-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Accent bar height-grow with spring */
+@keyframes bar-grow {
+  0%   { height: 0%;   opacity: 0; }
+  70%  { height: 70%;  opacity: 1; }
+  100% { height: 60%;  opacity: 1; }
+}
+
+/* Subtle floating animation for the avatar ring */
+@keyframes avatar-ring-pulse {
+  0%, 100% { box-shadow: 0 0 0 0px rgba(129, 140, 248, 0); }
+  50%       { box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25); }
+}
+
+.sidebar-orb        { animation: orb-breathe 9s ease-in-out infinite; }
+.sidebar-icon-active { animation: icon-pop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.sidebar-shimmer    { animation: shimmer-x 4s linear infinite; background-size: 200% auto; }
+.sidebar-nav-item   { animation: nav-slide-in 0.3s ease both; }
+.sidebar-bar-active { animation: bar-grow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.sidebar-avatar-ring { animation: avatar-ring-pulse 3s ease-in-out infinite; }
